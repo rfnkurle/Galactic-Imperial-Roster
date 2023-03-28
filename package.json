@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rfnkurle/Galactic-Imperial-Roster#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "inquirer": "^8.2.4",
     "mysql2": "^3.2.0"
   }
