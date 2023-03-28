@@ -135,6 +135,48 @@ function initialize() {
       });
     })
   };
+
+  function addMember() {
+    db.query("SELECT * FROM role", function (err, results) {
+      if (err) throw err;
+      inquirer.prompt([
+        {
+          name: "firstName",
+          type: "input",
+          message: "What is the new recruit's first name?"
+        },
+        {
+          name: "lastName",
+          type: "input",
+          message: "What is the new recruit's last name?"
+        },
+    {
+        name: "rank",
+        type: "input",
+        message: "What is the new recruit's rank?"
+      },
+        {
+          name: "roleId",
+          type: "list",
+          choices: results.map(item => item.title),
+          message: "Select a role for the recruit"
+        }
+      ]).then(function (answers) {
+        const selectedRole = results.find(item => item.title === answers.roleId);
+        db.query("INSERT INTO member_data SET ?",
+          {
+            first_name: answers.firstName,
+            last_name: answers.lastName,
+            rank: answers.rank,
+            role_id: selectedRole.id
+          }, function (err, res) {
+            if (err) throw err;
+            console.log("Added new recruit named " + answers.firstName + " " + answers.lastName + "\n");
+            initialize();
+          })
+      })
+    })
+  };
   
 
   initialize()
