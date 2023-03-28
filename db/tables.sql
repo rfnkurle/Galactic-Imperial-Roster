@@ -9,10 +9,10 @@ CREATE TABLE service_branch (
 );
 
 CREATE TABLE role (
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30) UNIQUE NOT NULL,
-  paygrade DECIMAL UNSIGNED NOT NULL,
-  branch_id INT UNSIGNED NOT NULL,
+  paygrade DECIMAL NOT NULL,
+  branch_id INT NOT NULL,
 FOREIGN KEY (branch_id) REFERENCES service_branch(id)
 );
 
