@@ -75,4 +75,24 @@ function initialize() {
     })
   };
 
+  function addBranch() {
+    inquirer.prompt([
+      {
+        name: "addBranch",
+        message: "What is the name of the new imperial service branch?"
+      }
+    ]).then(function (answer) {
+      db.query(
+        "INSERT INTO service_branch SET ?", {
+        name: answer.addBranch
+      },
+        function (err, res) {
+          if (err) throw err;
+          console.log(" New Service Branch is active.\n");
+          initialize();
+        }
+      );
+    });
+  }
+
   initialize()
