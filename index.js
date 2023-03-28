@@ -95,4 +95,46 @@ function initialize() {
     });
   }
 
+  function addRole() {
+    //query service_branch for existing list of branches
+    db.query("SELECT * FROM service_branch", function (err, res) {
+      if (err) throw err;
+      //asking for the three properties on the roles table      
+      inquirer.prompt([
+        {
+          name: "title",
+          type: "input",
+          message: "Please enter the title of the new role."
+        },
+        {
+          name: "paygrade",
+          type: "number",
+          message: "What is the paygrade of this role?",
+        },
+        {
+          name: "branchId",
+          type: "list",
+          message: "Select a service branch for this role.",
+          choices: res.map(branch=> branch.name)
+        }
+      ]).then(function (answers) {
+        // bring response into scope of promise
+        const selectedBranch = res.find(branch => branch.name === answers.branchId);
+        db.query("INSERT INTO role SET ?",
+          {
+            title: answers.title,
+            paygrade: answers.paygrade,
+            branch_id: selectedBranch.id
+          },
+          function (err, res) {
+            if (err) throw err;
+            console.log("New role added.\n");
+            initialize();
+          }
+        );
+      });
+    })
+  };
+  
+
   initialize()
