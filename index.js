@@ -50,8 +50,25 @@ function initialize() {
       });
   };
 
+  //JS functions call basic queries to display whole table
   function viewBranches() {
     db.query(`SELECT * FROM service_branch`, function (err, res) {
+      if (err) throw err;
+      console.table(res);
+      initialize();
+    })
+  };
+
+  function viewRoles() {
+    db.query(`SELECT * FROM role`, function (err, res) {
+      if (err) throw err;
+      console.table(res);
+      initialize();
+    })
+  };
+
+  function viewMembers() {
+    db.query(`SELECT * FROM member_data`, function (err, res) {
       if (err) throw err;
       console.table(res);
       initialize();
