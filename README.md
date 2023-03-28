@@ -7,6 +7,8 @@ A Galactic Empire requires extreme regimentation, and this terminal app organize
 
 ## URL
 
+https://github.com/rfnkurle/Galactic-Imperial-Roster
+
 ## Author
 Robby Kurle
 Geeorge LLucas
