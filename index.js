@@ -178,5 +178,40 @@ function initialize() {
     })
   };
   
+  function updateRole() {
+    db.query("SELECT * FROM member_data", function (err, res) {
+      if (err) throw err;
+      inquirer.prompt([
+        {
+          type: "list",
+          name: "selectEmp",
+          message: "Select the service member who is changing roles",
+          choices: res.map(emp => emp.rank+ " " + emp.last_name)
+        }
+      ]).then(function (answer) {
+        const selectedMem = res.find(emp => emp.rank+ " " + emp.last_name === answer.selectEmp);
+        db.query("SELECT * FROM role", function (err, res) {
+          inquirer.prompt([
+            {
+              type: "list",
+              name: "newRole",
+              message: "Select the new role for this employee",
+              choices: res.map(role => role.title)
+            }
+          ]).then(function (answer) {
+            const selectedRole = res.find(role => role.title === answer.newRole);
+  
+            db.query("UPDATE member_data SET role_id = ? WHERE id = ?", [selectedRole.id, selectedMem.id],
+              function (error) {
+                if (error) throw err;
+                initialize();
+              }
+            );
+          })
+        })
+      })
+    })
+  };
+  
 
   initialize()
