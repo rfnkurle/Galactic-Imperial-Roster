@@ -16,4 +16,5 @@ officer_id)
 VALUES ("Darth", "Vader", "big boss", 5, null),
         ("Willem", "Tarkin", "regional gov", 1, 1),
         ("Jed", "Shryke", "Flight Lieutenant", 3, 2),
-        ("Noe", "Budee", "private", 2, 2);
+        ("Noe", "Budee", "private", 2, 2),
+        ("Kevin", "Thrawn", "Admiral", 3, 2);
