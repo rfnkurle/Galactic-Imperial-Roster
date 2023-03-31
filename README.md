@@ -1,7 +1,7 @@
 # Galactic Imperial Database
 
 ## Description
-A Galactic Empire requires extreme regimentation, and this terminal app organizes imperial service branches, roles and member_data into convenient tables.
+A Galactic Empire requires extreme regimentation, and this terminal app organizes imperial service branches, roles and member_data into convenient tables. Always under development as the Galactic Empire is barreled down by endless bureaucracy.
 
 
 ## Application Images
