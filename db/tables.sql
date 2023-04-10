@@ -21,7 +21,7 @@ CREATE TABLE member_data(
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   rank VARCHAR(30),
-  race ENUM ("human", "twi'lek", "wookie"),
+  species ENUM ("human", "twi'lek", "wookie"),
   role_id INT NOT NULL,
      FOREIGN KEY (role_id) REFERENCES role(id),
   officer_id INT,
